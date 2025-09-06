@@ -19,10 +19,7 @@ services:
     restart: unless-stopped
 
   backend:
-    build:
-      context: ./backend/node-express-realworld-example-app
-      dockerfile: backend.Dockerfile
-    working_dir: /app
+    image: iwaseemdevops/microblog-backend:1.0
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/microblog_db
       NODE_ENV: production
@@ -31,15 +28,15 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    restart: unless-stopped
 
   frontend:
-    build:
-      context: ./frontend/react-redux-realworld-example-app
-      dockerfile: frontend.Dockerfile
+    image: iwaseemdevops/microblog-frontend:1.0
     ports:
       - "8080:80"
     depends_on:
       - backend
+    restart: unless-stopped
 
 volumes:
   postgres_data:
