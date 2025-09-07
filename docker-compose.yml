@@ -21,6 +21,9 @@ services:
       - app-network
 
   backend:
+    build:
+      context: ./backend/node-express-realworld-example-app
+      dockerfile: backend.Dockerfile
     image: iwaseemdevops/microblog-backend:1.0
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/microblog_db
@@ -35,7 +38,9 @@ services:
       - app-network
 
   frontend:
-    build: ./frontend/react-redux-realworld-example-app
+    build:
+      context: ./frontend/react-redux-realworld-example-app
+      dockerfile: frontend.Dockerfile
     ports:
       - "8080:80"
     depends_on:
