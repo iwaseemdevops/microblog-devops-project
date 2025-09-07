@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: iwaseemdevops/microblog-frontend:1.0
+    image: iwaseemdevops/microblog-frontend:1.3
     ports:
       - "8080:80"
     depends_on:
